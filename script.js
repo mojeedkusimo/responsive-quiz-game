@@ -139,12 +139,21 @@ function startQuiz() {
         document.querySelector('#answer-c').innerHTML = optionsC[questCount];
     }
     else {
-        scoreCount--;
-        document.querySelector('#question-container').innerHTML = 'You scored '+ scoreCount + ' out of ' + questCount;
-        optionsContainer.style.display = 'none';
-        scoreContainer.style.display = 'none';
-        tryAgain.style.display = 'block';
-        next.style.display = 'none';
+        if (scoreCount == 0) {
+            document.querySelector('#question-container').innerHTML = 'You scored '+ scoreCount + ' out of ' + questCount;
+            optionsContainer.style.display = 'none';
+            scoreContainer.style.display = 'none';
+            tryAgain.style.display = 'block';
+            next.style.display = 'none';    
+        }
+        else {
+            scoreCount--;
+            document.querySelector('#question-container').innerHTML = 'You scored '+ scoreCount + ' out of ' + questCount;
+            optionsContainer.style.display = 'none';
+            scoreContainer.style.display = 'none';
+            tryAgain.style.display = 'block';
+            next.style.display = 'none';
+        }
     }
 }
 
