@@ -26,6 +26,7 @@ body {
 #score-container {
     display: flex;
     justify-content: right;
+    display: none;
 }
 
 #score-count {
@@ -38,6 +39,10 @@ body {
 
 .options-container, .controls-container {
     margin-top: 10px;
+}
+
+.options-container {
+    display: none;
 }
 
 .option-a, .option-b, .option-c {
@@ -61,5 +66,9 @@ body {
 }
 
 #quest-container {
+    display: none;
+}
+
+#try-again, #next {
     display: none;
 }

@@ -1,58 +1,53 @@
-let questions = [
+ 
+ 
+ questions = [
     '1. What does HTML stand for?',
     '2. Who is making the Web standards?',
     '3. Choose the correct HTML element for the largest heading:',
     '4. What is the correct HTML element for inserting a line break?',
     '5. Choose the correct HTML element to define important text'
-];
+    ];
 
-let optionsA = [
-    'Hyper Text Markup Language',
-    'Google',
-    '<h6>',
-    '<lb>',
-    '<important>',
-];
+ optionsA = [
+     "Hyper Text Markup Language", 
+     "Google", 
+     "&lt;h6&gt;", 
+     "&lt;lb&gt;", 
+     "&lt;important&gt;"
+    ];
 
-let optionsB = [
-    'Home Tool Markup Language',
-    'Microsoft',
-    '<h1>',
-    '<br>',
-    '<b>',
-];
+ optionsB = [
+     "Home Tool Markup Language", 
+     "Microsoft", 
+     "&lt;h1>", 
+     "&lt;br&gt;", 
+     "&lt;b&gt;"
+    ];
 
-let optionsC = [
-    'Hyperlink and Text Markup Language',
-    'The World Wide Web Consortium',
-    '<h4>',
-    '<break>',
-    '<strong>',
-];
+ optionsC = [
+     "Hyperlink and Text Markup Language", 
+     "The World Wide Web Consortium", 
+     "&lt;h4&gt;", 
+     "&lt;break&gt;", 
+     "&lt;strong&gt;"
+    ];
 
-let scoreContainer = document.querySelector('#score-container');
-let optionsContainer = document.querySelector('.options-container');
-let tryAgain = document.querySelector('#try-again');
-let next = document.querySelector('#next');
-let start = document.querySelector('#start');
-let answerA = document.querySelector('#answer-a');
-let answerC = document.querySelector('#answer-c');
-let optionsContainerA = document.querySelector('.option-a');
-let optionsContainerB = document.querySelector('.option-b');
-let optionsContainerC = document.querySelector('.option-c');
-let clickedA = false;
-let clickedB = false;
-let clickedC = false;
-let clickCounterA = 0;
-let clickCounterB = 0;
-let clickCounterC = 0;
-let questCount = 0;
-let scoreCount = 0;
-
-scoreContainer.style.display = 'none';
-optionsContainer.style.display = 'none';
-tryAgain.style.display = 'none';
-next.style.display = 'none';
+let scoreContainer = document.querySelector('#score-container'),
+ optionsContainer = document.querySelector('.options-container'),
+ tryAgain = document.querySelector('#try-again'),
+ next = document.querySelector('#next'),
+ start = document.querySelector('#start'),
+ optionsContainerA = document.querySelector('.option-a'),
+ optionsContainerB = document.querySelector('.option-b'),
+ optionsContainerC = document.querySelector('.option-c'),
+ clickedA = false,
+ clickedB = false,
+ clickedC = false,
+ clickCounterA = 0,
+ clickCounterB = 0,
+ clickCounterC = 0,
+ questCount = 0,
+ scoreCount = 0;
 
 start.addEventListener('click', function () {
     document.querySelector('#score-count').innerHTML = scoreCount;
@@ -60,14 +55,12 @@ start.addEventListener('click', function () {
     optionsContainer.style.display = 'block';
     next.style.display = 'block';
     start.style.display = 'none';
-
-    startQuiz();
+    startQuiz(questCount);
 });
 
 next.addEventListener('click', function () {
     questCount++;
-
-    startQuiz();
+    startQuiz(questCount);
     returnDefault();
 });
 
@@ -85,9 +78,12 @@ optionsContainerA.addEventListener('click', function () {
         clickedA = true;
         clickCounterA += 1;
         if (questCount == 0) {
+            document.querySelector('#score-count').innerHTML = scoreCount++;
+            if (document.querySelector('#score-count').innerHTML == 0) {
+                document.querySelector('#score-count').innerHTML = scoreCount++;
+            }
             optionsContainerA.style.backgroundColor = 'green';
             optionsContainerA.style.color = 'white';
-            document.querySelector('#score-count').innerHTML = scoreCount++;
         }
         else {
             optionsContainerA.style.backgroundColor = 'red';
@@ -105,6 +101,9 @@ optionsContainerB.addEventListener('click', function () {
             optionsContainerB.style.backgroundColor = 'green';
             optionsContainerB.style.color = 'white';
             document.querySelector('#score-count').innerHTML = scoreCount++;
+            if (document.querySelector('#score-count').innerHTML == 0) {
+                document.querySelector('#score-count').innerHTML = scoreCount++;
+            }
         }
         else {
             optionsContainerB.style.backgroundColor = 'red';
@@ -122,6 +121,9 @@ optionsContainerC.addEventListener('click', function () {
             optionsContainerC.style.backgroundColor = 'green';
             optionsContainerC.style.color = 'white';
             document.querySelector('#score-count').innerHTML = scoreCount++;
+            if (document.querySelector('#score-count').innerHTML == 0) {
+                document.querySelector('#score-count').innerHTML = scoreCount++;
+            }
         }
         else {
             optionsContainerC.style.backgroundColor = 'red';
@@ -131,7 +133,7 @@ optionsContainerC.addEventListener('click', function () {
 });
 
 
-function startQuiz() {
+function startQuiz(questCount) {
     if (questCount < questions.length) {
         document.querySelector('#question-container').innerHTML = questions[questCount];
         document.querySelector('#answer-a').innerHTML = optionsA[questCount];
