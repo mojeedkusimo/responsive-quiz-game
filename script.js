@@ -34,6 +34,7 @@
 
 let scoreContainer = document.querySelector('#score-container'),
  optionsContainer = document.querySelector('.options-container'),
+ questionScoreContainer = document.querySelector('#quest-n-score-container'),
  tryAgain = document.querySelector('#try-again'),
  next = document.querySelector('#next'),
  start = document.querySelector('#start'),
@@ -52,6 +53,7 @@ let scoreContainer = document.querySelector('#score-container'),
 start.addEventListener('click', function () {
     document.querySelector('#score-count').innerHTML = scoreCount;
     scoreContainer.style.display = 'block';
+    questionScoreContainer.style.display = 'block';
     optionsContainer.style.display = 'block';
     next.style.display = 'block';
     start.style.display = 'none';
@@ -139,10 +141,13 @@ function startQuiz(questCount) {
         document.querySelector('#answer-a').innerHTML = optionsA[questCount];
         document.querySelector('#answer-b').innerHTML = optionsB[questCount];
         document.querySelector('#answer-c').innerHTML = optionsC[questCount];
+        document.querySelector('#quest-count').innerHTML = questCount + 1;
+        document.querySelector('#total-quest').innerHTML = questions.length;
     }
     else {
         if (scoreCount == 0) {
             document.querySelector('#question-container').innerHTML = 'You scored '+ scoreCount + ' out of ' + questCount;
+            questionScoreContainer.style.display = 'none';
             optionsContainer.style.display = 'none';
             scoreContainer.style.display = 'none';
             tryAgain.style.display = 'block';
@@ -151,6 +156,7 @@ function startQuiz(questCount) {
         else {
             scoreCount--;
             document.querySelector('#question-container').innerHTML = 'You scored '+ scoreCount + ' out of ' + questCount;
+            questionScoreContainer.style.display = 'none';
             optionsContainer.style.display = 'none';
             scoreContainer.style.display = 'none';
             tryAgain.style.display = 'block';

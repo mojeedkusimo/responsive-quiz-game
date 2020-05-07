@@ -65,10 +65,10 @@ body {
     cursor: pointer;
 }
 
-#quest-container {
+#try-again, #next {
     display: none;
 }
 
-#try-again, #next {
+#quest-n-score-container {
     display: none;
 }
