@@ -41,6 +41,12 @@ let scoreContainer = document.querySelector('#score-container'),
  optionsContainerA = document.querySelector('.option-a'),
  optionsContainerB = document.querySelector('.option-b'),
  optionsContainerC = document.querySelector('.option-c'),
+ radioA = document.querySelector('#a').disabled,
+ radioB = document.querySelector('#b').disabled,
+ radioC = document.querySelector('#c').disabled,
+ checkRadioA = document.querySelector('#a').checked,
+ checkRadioB = document.querySelector('#b').checked,
+ checkRadioC = document.querySelector('#c').checked,
  clickedA = false,
  clickedB = false,
  clickedC = false,
@@ -78,6 +84,9 @@ optionsContainerA.addEventListener('click', function () {
     
     if (clickedB == clickedC && clickCounterA < 1) {
         clickedA = true;
+        document.querySelector('#b').disabled = true;
+        document.querySelector('#c').disabled = true;
+        document.querySelector('#a').checked = true;
         clickCounterA += 1;
         if (questCount == 0) {
             document.querySelector('#score-count').innerHTML = scoreCount++;
@@ -98,6 +107,9 @@ optionsContainerB.addEventListener('click', function () {
 
     if (clickedA == clickedC && clickCounterB < 1) {
         clickedB = true;
+        document.querySelector('#a').disabled = true;
+        document.querySelector('#c').disabled = true;
+        document.querySelector('#b').checked = true;
         clickCounterB += 1;
         if (questCount == 2 || questCount == 3) {
             optionsContainerB.style.backgroundColor = 'green';
@@ -118,6 +130,9 @@ optionsContainerC.addEventListener('click', function () {
 
     if (clickedB == clickedA && clickCounterC < 1) {
         clickedC = true;
+        document.querySelector('#a').disabled = true;
+        document.querySelector('#b').disabled = true;
+        document.querySelector('#c').checked = true;
         clickCounterC += 1;
         if (questCount == 1 || questCount == 4) {
             optionsContainerC.style.backgroundColor = 'green';
@@ -175,6 +190,12 @@ function returnDefault() {
     clickedA = false;
     clickedB = false;
     clickedC = false;
+    document.querySelector('#a').disabled = false;
+    document.querySelector('#b').disabled = false;
+    document.querySelector('#c').disabled = false;
+    document.querySelector('#a').checked = false;
+    document.querySelector('#b').checked = false;
+    document.querySelector('#c').checked = false;
     clickCounterA = 0;
     clickCounterB = 0;
     clickCounterC = 0;
